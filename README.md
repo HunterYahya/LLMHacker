@@ -1,27 +1,57 @@
-Emulating a Hacking LLM utilizing the free API key that you can generate on openrouter.ai 
-I choose the DeepSeek V3 0324 (FREE) Model but you can replace it in the python code with any model that you want basically. 
-You should put in your free API Key and Model type in the lines between 61 and 67 in the .py file, it is very very simple to do. 
-After that you need to do the following, make sure you have Python installed. I suggest using VS Code for this whole process actually. 
+# LLM Hacker - Adversarial Emulation Tool
 
-Improvements made: 
-Removed adversary profiles since it added nothing but only slowed things down. Updated the main.py file 
+An interactive tool for emulating hacking methodologies with LLMs, utilizing the free API from OpenRouter.ai.
 
+## 🚀 Features
 
-Using Git Bash (easiest option):
+- Interactive chat interface for technical adversarial emulation
+- Supports multiple attack phases based on the MITRE ATT&CK framework
+- Detailed logging of all operations
+- Export functionality for operation data
 
-Open Git Bash terminal in VS Code
-Create virtual environment:
+## 📋 Prerequisites
+
+- Python 3.6+
+- OpenRouter.ai free API key
+- Internet connection
+
+## ⚙️ Installation
+
+### Step 1: Clone the repository
+```bash
+git clone https://github.com/yourusername/llm-hacker.git
+cd llm-hacker
+Step 2: Set up a virtual environment
+Using Git Bash (recommended):
+bash# Create virtual environment
 python -m venv venv
 
-Activate it (using Git Bash syntax):
+# Activate it
 source venv/Scripts/activate
 
-Install required packages:
+# Install required packages
 pip install streamlit requests
+Using Windows CMD:
+bashpython -m venv venv
+venv\Scripts\activate
+pip install streamlit requests
+🔧 Configuration
+Open llmhacker.py and update the API key and model selection:
 
-Run the app:
-streamlit run llmhacker.py
+Find lines 61-67 in the code
+Replace the default API key with your OpenRouter API key
+Choose your preferred model (default is DeepSeek V3 0324 FREE)
 
-requests is also a needed Python package so make sure to pip install that along with streamlit. run the .py file and you're good to go with your Hacking Assistant! 
+🏃‍♂️ Running the Application
+bashstreamlit run llmhacker.py
+The application will open in your default web browser.
+💡 Recent Improvements
 
-This is my first ever Github little project so I would appreciate any feedback, improvements, or comments. 
+Performance optimization: Removed adversary profiles to reduce latency and improve response time
+Streamlined interface: Focused on core functionality for better user experience
+Updated system prompts: Enhanced response quality for technical operations
+
+⚠️ Disclaimer
+This tool is for educational purposes and legitimate security testing only. Always use responsibly and ethically in authorized environments.
+📝 Feedback
+This is my first GitHub project, so I would appreciate any feedback, suggestions for improvement, or comments!
