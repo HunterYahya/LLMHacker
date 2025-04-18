@@ -20,21 +20,21 @@ An interactive tool for emulating hacking methodologies with LLMs, utilizing the
 ### Step 1: Clone the repository
 ```bash
 git clone https://github.com/yourusername/llm-hacker.git
+
 cd llm-hacker
+
 Step 2: Set up a virtual environment
+
 Using Git Bash (recommended):
 bash# Create virtual environment
 python -m venv venv
 
 # Activate it
-source venv/Scripts/activate
+venv/Scripts/activate
 
 # Install required packages
 pip install streamlit requests
-Using Windows CMD:
-bashpython -m venv venv
-venv\Scripts\activate
-pip install streamlit requests
+
 🔧 Configuration
 Open llmhacker.py and update the API key and model selection:
 
@@ -43,7 +43,7 @@ Replace the default API key with your OpenRouter API key
 Choose your preferred model (default is DeepSeek V3 0324 FREE)
 
 🏃‍♂️ Running the Application
-bashstreamlit run llmhacker.py
+streamlit run llmhacker.py
 The application will open in your default web browser.
 💡 Recent Improvements
 
