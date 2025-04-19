@@ -4,19 +4,19 @@ An interactive tool for emulating hacking methodologies with LLMs, utilizing the
 
 🔧 Recent Improvements for the LLM
 
-Refined the GUI experience by removing cluttered or unnecessary UI elements for a cleaner, more mission-focused interface.
+Refined the GUI experience by removing cluttered or unnecessary UI elements for a cleaner, mission-focused interface.
 
-Streamlined prompt construction for faster, more direct adversarial emulation responses.
+Streamlined prompt construction to enable faster, more direct adversarial emulation with better response control.
 
-Aggressive mode is now enforced by default, improving response quality and reducing model hesitation.
+Aggressive mode is now the default, eliminating delays and improving model assertiveness and tradecraft relevance.
 
-Removed “Standard” operation mode to keep all interactions focused on realism, technical detail, and offensive tradecraft.
+Deprecated “Standard” operation mode to ensure all interactions stay technically realistic and offensive-oriented.
 
-Replaced legacy banners and added a customized branding header and footer for clarity and polish.
+Replaced legacy banners with custom branding and a redesigned footer for a professional, operator-friendly visual.
 
-Initial model remains deepseek/deepseek-chat-v3-0324:free, but...
+Current model: deepseek/deepseek-chat-v3-0324:free
 
-⚠️ Upcoming switch: Evaluating and preparing transition to mistralai/mixtral-8x7b:free, a significantly more effective model for red team simulation, malware enhancement, and bypass strategy development.
+⚠️ Planned upgrade: Actively evaluating a transition to mistralai/mixtral-8x7b:free — a significantly more capable model for red teaming, malware enhancement, and bypass technique generation.
 
 ## 🚀 Features
 
