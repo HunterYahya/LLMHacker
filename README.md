@@ -2,6 +2,22 @@
 
 An interactive tool for emulating hacking methodologies with LLMs, utilizing the free API from OpenRouter.ai.
 
+🔧 Recent Improvements for the LLM
+
+Refined the GUI experience by removing cluttered or unnecessary UI elements for a cleaner, more mission-focused interface.
+
+Streamlined prompt construction for faster, more direct adversarial emulation responses.
+
+Aggressive mode is now enforced by default, improving response quality and reducing model hesitation.
+
+Removed “Standard” operation mode to keep all interactions focused on realism, technical detail, and offensive tradecraft.
+
+Replaced legacy banners and added a customized branding header and footer for clarity and polish.
+
+Initial model remains deepseek/deepseek-chat-v3-0324:free, but...
+
+⚠️ Upcoming switch: Evaluating and preparing transition to mistralai/mixtral-8x7b:free, a significantly more effective model for red team simulation, malware enhancement, and bypass strategy development.
+
 ## 🚀 Features
 
 - Interactive chat interface for technical adversarial emulation
