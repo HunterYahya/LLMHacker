@@ -60,7 +60,7 @@ with st.sidebar:
     st.header("Operation Parameters")
 
     API_KEY = st.text_input("API Key", value="YOUR-API-KEY-HERE")
-    MODEL = st.selectbox("Select Model", ["deepseek/deepseek-chat-v3-0324:free"])
+    MODEL = st.selectbox("Select Model", ["deepseek/deepseek-r1:free"])
 
     st.subheader("Operation Parameters")
     OPERATION_PHASE = st.selectbox("Current Attack Phase", [
