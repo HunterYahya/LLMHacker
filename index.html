@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redulator by HunterYahya</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/tokyo-night-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+    <style>
+        :root {
+            --primary: #ff4757;
+            --primary-dark: #d63031;
+            --secondary: #2a5298;
+            --background-dark: #0e1117;
+            --background-medium: #1e2130;
+            --background-light: #232526;
+            --text-light: #e0e0e0;
+            --border-radius: 12px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            grid-template-rows: auto 1fr auto;
+            grid-template-areas:
+                "sidebar header"
+                "sidebar main"
+                "sidebar footer";
+            height: 100vh;
+        }
+        
+        /* Header styles */
+        .header {
+            grid-area: header;
+            background: linear-gradient(90deg, #1e2130, #0b0c13);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .header h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            margin: 0;
+        }
+        
+        /* Sidebar styles */
+        .sidebar {
+            grid-area: sidebar;
+            background: #161b22;
+            border-right: 1px solid rgba(255, 71, 87, 0.3);
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .sidebar h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+            border-bottom: 1px solid var(--primary);
+            padding-bottom: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--background-medium);
+            color: white;
+            border: 1px solid var(--primary);
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+        
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            box-shadow: 0 0 15px rgba(255, 71, 87, 0.5);
+        }
+        
+        /* Main content */
+        .main-content {
+            grid-area: main;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow: hidden;
+        }
+        
+        .operation-info {
+            background: linear-gradient(90deg, #1e2130, #0b0c13);
+            padding: 10px 15px;
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .operation-id {
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        /* Chat container */
+        .chat-container {
+            flex-grow: 1;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            background-color: var(--background-medium);
+            overflow-y: auto;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 71, 87, 0.3);
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .chat-bubble {
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: var(--border-radius);
+            line-height: 1.7;
+            animation: fadeIn 0.5s ease;
+            overflow-wrap: break-word;
+            white-space: pre-wrap;
+        }
+        
+        .user-msg {
+            background: linear-gradient(90deg, #1e3c72, #2a5298);
+            color: #f5f5f5;
+            border-left: 4px solid #4a90e2;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .assistant-msg {
+            background: linear-gradient(90deg, #232526, #414345);
+            color: #e0e0e0;
+            border-left: 4px solid var(--primary);
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Input area */
+        .input-container {
+            display: flex;
+            gap: 10px;
+            position: relative;
+        }
+        
+        .input-field {
+            flex-grow: 1;
+            background-color: var(--background-medium);
+            color: white;
+            border: 1px solid var(--primary);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 16px;
+            resize: none;
+            min-height: 60px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        
+        .send-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            align-self: flex-end;
+            height: 60px;
+            transition: all 0.3s ease;
+        }
+        
+        .send-btn:hover {
+            background-color: var(--primary-dark);
+            box-shadow: 0 0 15px rgba(255, 71, 87, 0.5);
+        }
+        
+        /* Footer */
+        .footer {
+            grid-area: footer;
+            background: linear-gradient(90deg, #1e2130, #0b0c13);
+            color: var(--primary);
+            padding: 15px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            border-top: 1px solid rgba(255, 71, 87, 0.3);
+        }
+        
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 14px;
+            background: #0b0c13;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #0b0c13;
+            border-radius: 7px;
+            border: 1px solid rgba(255, 71, 87, 0.2);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 7px;
+            border: 2px solid #0b0c13;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+        
+        /* Loading indicator */
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+            color: var(--primary);
+        }
+        
+        .loading::after {
+            content: " ⚠️";
+            animation: dots 1.5s steps(5, end) infinite;
+        }
+        
+        @keyframes dots {
+            0%, 20% { content: "."; }
+            40% { content: ".."; }
+            60% { content: "..."; }
+            80%, 100% { content: "...."; }
+        }
+        
+        /* Code highlighting */
+        pre {
+            background-color: #1a1b26 !important;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 71, 87, 0.3);
+        }
+        
+        code {
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 14px;
+        }
+        
+        /* Error message */
+        .error-msg {
+            background-color: rgba(255, 71, 87, 0.2);
+            color: var(--primary);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin: 15px 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        /* Phase badge */
+        .phase-badge {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        /* Media queries for responsive layout */
+        @media (max-width: 992px) {
+            .container {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "header"
+                    "main"
+                    "footer";
+            }
+            
+            .sidebar {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 100;
+            }
+            
+            .sidebar.active {
+                display: block;
+            }
+            
+            .sidebar-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 101;
+                background-color: var(--primary);
+                color: white;
+                border: none;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .flash {
+            animation: flash 1s;
+        }
+        
+        @keyframes flash {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="sidebar-toggle" id="sidebar-toggle" style="display: none;">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <div class="sidebar">
+            <h2>Operation Settings</h2>
+            <div class="form-group">
+                <label for="api-key">API Key</label>
+                <input type="password" id="api-key" placeholder="YOUR-API-KEY-HERE">
+            </div>
+            
+            <div class="form-group">
+                <label for="model">Select Model</label>
+                <select id="model">
+                    <option value="google/gemini-2.0-flash-exp:free">google/gemini-2.0-flash-exp:free</option>
+                    <option value="google/gemini-1.5-pro-latest">google/gemini-1.5-pro-latest</option>
+                    <option value="anthropic/claude-3-opus:beta">anthropic/claude-3-opus:beta</option>
+                    <option value="meta-llama/llama-3-70b-instruct">meta-llama/llama-3-70b-instruct</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="target-env">Target Environment</label>
+                <input type="text" id="target-env" value="Windows Enterprise Network">
+            </div>
+            
+            <button class="btn" id="new-operation-btn">New Operation</button>
+        </div>
+        
+        <div class="header">
+            <h1>🔴 Redulator by HunterYahya 🔴</h1>
+        </div>
+        
+        <div class="main-content">
+            <div class="operation-info">
+                <div>
+                    <span class="operation-id">Operation ID: <span id="operation-id">Loading...</span></span>
+                </div>
+                <div>
+                    <span>Started: <span id="operation-start">Loading...</span></span>
+                </div>
+            </div>
+            
+            <div class="chat-container" id="chat-container"></div>
+            
+            <div class="loading" id="loading">Generating methodology</div>
+            
+            <div class="input-container">
+                <textarea class="input-field" id="user-input" placeholder="Enter your adversary emulation query..." rows="1"></textarea>
+                <button class="send-btn" id="send-btn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="footer">
+            🔒 Red Team Assistant - Advanced Adversary Emulation 🔒
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatContainer = document.getElementById('chat-container');
+            const userInput = document.getElementById('user-input');
+            const sendBtn = document.getElementById('send-btn');
+            const apiKeyInput = document.getElementById('api-key');
+            const modelSelect = document.getElementById('model');
+            const targetEnvInput = document.getElementById('target-env');
+            const newOperationBtn = document.getElementById('new-operation-btn');
+            const loadingIndicator = document.getElementById('loading');
+            const operationIdEl = document.getElementById('operation-id');
+            const operationStartEl = document.getElementById('operation-start');
+            const sidebarToggle = document.getElementById('sidebar-toggle');
+            const sidebar = document.querySelector('.sidebar');
+            
+            // Check if we need to show the sidebar toggle (on smaller screens)
+            function checkWindowSize() {
+                if (window.innerWidth <= 992) {
+                    sidebarToggle.style.display = 'flex';
+                } else {
+                    sidebarToggle.style.display = 'none';
+                    sidebar.classList.remove('active');
+                }
+            }
+            
+            // Toggle sidebar visibility
+            sidebarToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('active');
+            });
+            
+            // Adjust the textarea height based on content
+            userInput.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = (this.scrollHeight) + 'px';
+                
+                // Reset to min height if empty
+                if (this.value === '') {
+                    this.style.height = '60px';
+                }
+            });
+            
+            // Submit on Enter key (but allow Shift+Enter for new lines)
+            userInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendBtn.click();
+                }
+            });
+            
+            // Load conversation history on page load
+            async function loadHistory() {
+                try {
+                    const response = await fetch('/get_history');
+                    const data = await response.json();
+                    
+                    // Set operation info
+                    operationIdEl.textContent = data.operation_id || 'N/A';
+                    operationStartEl.textContent = data.operation_start || 'N/A';
+                    
+                    // Display messages
+                    chatContainer.innerHTML = '';
+                    data.history.forEach(msg => {
+                        displayMessage(msg.role, msg.content);
+                    });
+                    
+                    // Scroll to bottom
+                    scrollToBottom();
+                } catch (error) {
+                    console.error('Error loading history:', error);
+                }
+            }
+            
+            // Send a message to the backend
+            async function sendMessage() {
+                const message = userInput.value.trim();
+                const apiKey = apiKeyInput.value.trim();
+                const model = modelSelect.value;
+                const targetEnvironment = targetEnvInput.value.trim();
+                
+                if (!message) return;
+                if (!apiKey) {
+                    displayError('Please enter your OpenRouter API key in the sidebar');
+                    return;
+                }
+                
+                // Clear input and reset height
+                userInput.value = '';
+                userInput.style.height = '60px';
+                
+                // Display user message immediately
+                displayMessage('user', message);
+                scrollToBottom();
+                
+                // Show loading indicator
+                loadingIndicator.style.display = 'block';
+                
+                try {
+                    const response = await fetch('/send_message', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            message: message,
+                            api_key: apiKey,
+                            model: model,
+                            target_environment: targetEnvironment
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (response.ok) {
+                        // Display assistant response
+                        displayMessage('assistant', data.reply);
+                        scrollToBottom();
+                    } else {
+                        displayError(data.error || 'An error occurred');
+                    }
+                } catch (error) {
+                    displayError('Network error: ' + error.message);
+                } finally {
+                    loadingIndicator.style.display = 'none';
+                }
+            }
+            
+            // Display a message in the chat container
+            function displayMessage(role, content) {
+                const msgDiv = document.createElement('div');
+                msgDiv.className = role === 'user' ? 'chat-bubble user-msg' : 'chat-bubble assistant-msg';
+                
+                const roleLabel = document.createElement('strong');
+                roleLabel.textContent = role === 'user' ? 'Operator: ' : 'Redulator: ';
+                msgDiv.appendChild(roleLabel);
+                
+                const contentDiv = document.createElement('div');
+                
+                // Process phase tags specially if it's an assistant message
+                if (role === 'assistant') {
+                    // Extract and format the phase tag
+                    const phaseMatch = content.match(/\[(.*?) Phase\]/);
+                    if (phaseMatch) {
+                        const phaseBadge = document.createElement('div');
+                        phaseBadge.className = 'phase-badge';
+                        phaseBadge.textContent = phaseMatch[0];
+                        msgDiv.appendChild(phaseBadge);
+                        
+                        // Remove the phase tag from the content for better formatting
+                        content = content.replace(/\[(.*?) Phase\]\s*/, '');
+                    }
+                }
+                
+                // Convert markdown to HTML with proper rendering for code blocks
+                contentDiv.innerHTML = marked.parse(content);
+                
+                // Apply syntax highlighting to code blocks
+                const codeBlocks = contentDiv.querySelectorAll('pre code');
+                codeBlocks.forEach(block => {
+                    hljs.highlightElement(block);
+                });
+                
+                msgDiv.appendChild(contentDiv);
+                chatContainer.appendChild(msgDiv);
+            }
+            
+            // Display an error message
+            function displayError(message) {
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'error-msg';
+                errorDiv.textContent = message;
+                chatContainer.appendChild(errorDiv);
+                scrollToBottom();
+            }
+            
+            // Start a new operation
+            async function startNewOperation() {
+                try {
+                    const response = await fetch('/new_operation', {
+                        method: 'POST'
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (response.ok) {
+                        // Clear chat container
+                        chatContainer.innerHTML = '';
+                        
+                        // Update operation info
+                        operationIdEl.textContent = data.operation_id;
+                        operationStartEl.textContent = new Date().toLocaleString();
+                        
+                        // Visual feedback
+                        operationIdEl.parentElement.classList.add('flash');
+                        setTimeout(() => {
+                            operationIdEl.parentElement.classList.remove('flash');
+                        }, 1000);
+                        
+                        // Add a system message to indicate new operation
+                        const systemMsg = document.createElement('div');
+                        systemMsg.className = 'error-msg';
+                        systemMsg.style.backgroundColor = 'rgba(42, 82, 152, 0.2)';
+                        systemMsg.style.color = '#4a90e2';
+                        systemMsg.style.borderLeft = '4px solid #4a90e2';
+                        systemMsg.textContent = 'New operation started. Ready for your instructions.';
+                        chatContainer.appendChild(systemMsg);
+                    } else {
+                        displayError('Failed to start new operation');
+                    }
+                } catch (error) {
+                    displayError('Network error: ' + error.message);
+                }
+            }
+            
+            // Scroll chat to bottom
+            function scrollToBottom() {
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+            
+            // Event listeners
+            sendBtn.addEventListener('click', sendMessage);
+            newOperationBtn.addEventListener('click', startNewOperation);
+            
+            // Check window size on load and resize
+            window.addEventListener('resize', checkWindowSize);
+            checkWindowSize();
+            
+            // Load history on page load
+            loadHistory();
+        });
+    </script>
+</body>
+</html>
