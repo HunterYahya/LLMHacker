@@ -1,3 +1,98 @@
+# Redulator - Advanced Adversary Emulation Platform
+
+## 🔴 Project Evolution
+
+Redulator has evolved from a Streamlit-based application to a more powerful Flask-based platform for advanced adversary emulation. This transformation enhances capabilities for performing authorized red team operations with improved prompt engineering.
+
+## 🚀 Quick Start
+
+### Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/HunterYahya/LLLMHacker.git
+   cd redulator
+   ```
+
+2. **Install requirements**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Run the application**:
+   ```bash
+   python main.py
+   ```
+
+4. **Access the application**:
+   Open your browser and navigate to `http://127.0.0.1:5000`
+
+## 💻 Key Improvements
+
+### Enhanced Adversary Emulation
+
+The new version implements significantly improved prompting that generates more realistic and technically detailed adversary emulation:
+
+### Streamlit to Flask Migration
+
+The application has been migrated from Streamlit to Flask, providing:
+
+- **Better Session Management**: Server-side sessions for more reliable operation history
+- **Enhanced Response Processing**: Improved cleaning and formatting of AI responses
+- **More Aggressive Prompting**: Generates more realistic threat actor behaviors
+- **Technical Accuracy**: Higher quality output for red team operations
+
+## 🔒 Usage
+
+### Getting Started
+
+1. **Configure Your Operation**:
+   - Enter your OpenRouter API key
+   - Specify target environment details
+
+2. **Run Adversary Emulation**:
+   - Enter your queries to get detailed adversary tactics
+   - Receive specific commands, code, and technical procedures
+
+## 🔧 Requirements
+
+- Python 3.8+
+- Flask
+- Flask-Session
+- Requests
+- python-dotenv
+
+## 📋 Features
+
+- **Advanced Threat Actor Emulation**: Generate realistic threat actor behaviors and techniques
+- **Operation Tracking**: Unique IDs and timestamps for each operation
+- **Conversation History**: Maintain full conversation context
+- **Environment-Specific Emulation**: Tailored responses to your target environment
+- **Technical Detail**: Specific commands, code snippets, and technical procedures
+
+## 🛠️ For Developers
+
+If you want to modify the application its fine, but please give me some credit :)
+
+1. The main application logic is in `main.py`
+2. Static files (CSS, JS) are in the `static` directory
+3. HTML templates are in the `templates` directory
+
+## 📚 License
+
+[No License Bruh, We keep it Open]
+
+## 🔗 Contact
+
+[preferably here on Github]
+
+---
+
+Created by HunterYahya | Redulator - Advanced Adversary Emulation Platform
+
+
+
+
 # 🧠💥 LLM Hacker – Adversarial Emulation Tool
 
 **LLM Red Team Operator**
