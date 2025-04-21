@@ -20,7 +20,7 @@
 
 ---
 
-![Redulator Screenshot](https://via.placeholder.com/800x400?text=Redulator+Screenshot)
+![Redulator Screenshot] [redulating.png](https://postimg.cc/xX7scfLw)
 
 > 💡 **Tip:** For the best experience, run Redulator in a modern browser with dark mode enabled.
 
