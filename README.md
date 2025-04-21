@@ -2,7 +2,7 @@
 
 **LLM Red Team Operator**
 
-## 🚀 Recent Updates
+## 🚀 Recent Updates (April 21, 2025)
 
 <div align="center">
   <img src="https://img.shields.io/badge/NEW-Improved%20GUI-ff4757?style=for-the-badge" alt="Improved GUI">
