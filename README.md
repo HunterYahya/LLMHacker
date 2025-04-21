@@ -1,7 +1,28 @@
 # 🧠💥 LLM Hacker – Adversarial Emulation Tool
 
-**LLM Red Team Operator**  
-An interactive tool for emulating hacking methodologies using LLMs — powered by the free [OpenRouter.ai](https://openrouter.ai) API.
+**LLM Red Team Operator**
+
+## 🚀 Recent Updates
+
+<div align="center">
+  <img src="https://img.shields.io/badge/NEW-Improved%20GUI-ff4757?style=for-the-badge" alt="Improved GUI">
+  <img src="https://img.shields.io/badge/UPDATED-Enhanced%20Prompting-4a90e2?style=for-the-badge" alt="Enhanced Prompting">
+  <img src="https://img.shields.io/badge/MODEL-Google%20Gemini%202.0%20Flash-00c853?style=for-the-badge" alt="New Model">
+</div>
+
+### What's New in This Version
+
+| Feature | Description |
+|---------|-------------|
+| ✨ **Enhanced UI** | Completely redesigned interface with improved chat container, sleek scrollbars, and professional styling |
+| 🧠 **Better Prompting** | Significantly improved system prompts for more accurate and useful adversary emulation |
+| 🤖 **Model Upgrade** | Now using `google/gemini-2.0-flash-exp:free` for faster and more accurate responses |
+
+---
+
+![Redulator Screenshot](https://via.placeholder.com/800x400?text=Redulator+Screenshot)
+
+> 💡 **Tip:** For the best experience, run Redulator in a modern browser with dark mode enabled.
 
 This tool focuses on adversarial emulation, offensive security research, and red team tradecraft simulation.  
 With proper prompting, it can assist in **malware development**, **payload optimization**, and **bypass techniques** — all within a safe, controlled environment.
