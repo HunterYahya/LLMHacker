@@ -11,7 +11,7 @@ Redulator has evolved from a Streamlit-based application to a more powerful Flas
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/HunterYahya/LLLMHacker.git
-   cd redulator
+   cd LLMHacker
    ```
 
 2. **Install requirements**:
