@@ -115,8 +115,6 @@ Created by HunterYahya | Redulator - Advanced Adversary Emulation Platform
 
 ---
 
-[![redulating.png](https://i.postimg.cc/MGZg3XHp/redulating.png)](https://postimg.cc/xX7scfLw)
-
 > 💡 **Tip:** For the best experience, run Redulator in a modern browser with dark mode enabled.
 
 This tool focuses on adversarial emulation, offensive security research, and red team tradecraft simulation.  
